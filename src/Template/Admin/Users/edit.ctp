@@ -20,6 +20,7 @@
     <fieldset>
         <legend><?= __('Edit User') ?></legend>
         <?php
+            echo $this->Form->control('role_id');
             echo $this->Form->control('username');
             echo $this->Form->control('name');
             echo $this->Form->control('status');
@@ -27,7 +28,6 @@
             echo $this->Form->control('birthday');
             echo $this->Form->control('country');
             echo $this->Form->control('password');
-            echo $this->Form->control('role');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

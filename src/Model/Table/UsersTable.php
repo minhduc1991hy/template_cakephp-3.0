@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
+ * @property \Cake\ORM\Association\BelongsTo $UsersRoles
+ *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
@@ -37,6 +39,11 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->belongsTo('UsersRoles', [
+            'foreignKey' => 'role_id',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**
@@ -81,11 +88,6 @@ class UsersTable extends Table
             ->requirePresence('password', 'create')
             ->notEmpty('password');
 
-        $validator
-            ->integer('role')
-            ->requirePresence('role', 'create')
-            ->notEmpty('role');
-
         return $validator;
     }
 
@@ -100,6 +102,7 @@ class UsersTable extends Table
     {
         $rules->add($rules->isUnique(['username']));
         $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->existsIn(['role_id'], 'UsersRoles'));
 
         return $rules;
     }

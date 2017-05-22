@@ -10,11 +10,17 @@
         <li><?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Users Roles'), ['controller' => 'UsersRoles', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Users Role'), ['controller' => 'UsersRoles', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="users view large-9 medium-8 columns content">
     <h3><?= h($user->name) ?></h3>
     <table class="vertical-table">
+        <tr>
+            <th scope="row"><?= __('Users Role') ?></th>
+            <td><?= $user->has('users_role') ? $this->Html->link($user->users_role->title, ['controller' => 'UsersRoles', 'action' => 'view', $user->users_role->id]) : '' ?></td>
+        </tr>
         <tr>
             <th scope="row"><?= __('Username') ?></th>
             <td><?= h($user->username) ?></td>
@@ -46,10 +52,6 @@
         <tr>
             <th scope="row"><?= __('Status') ?></th>
             <td><?= $this->Number->format($user->status) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Role') ?></th>
-            <td><?= $this->Number->format($user->role) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>
