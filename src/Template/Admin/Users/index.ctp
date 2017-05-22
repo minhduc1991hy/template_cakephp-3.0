@@ -15,6 +15,7 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('role_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('username') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('status') ?></th>
@@ -22,7 +23,6 @@
                 <th scope="col"><?= $this->Paginator->sort('birthday') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('country') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('password') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('role') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -32,6 +32,7 @@
             <?php foreach ($users as $user): ?>
             <tr>
                 <td><?= $this->Number->format($user->id) ?></td>
+                <td><?= $this->Number->format($user->role_id) ?></td>
                 <td><?= h($user->username) ?></td>
                 <td><?= h($user->name) ?></td>
                 <td><?= $this->Number->format($user->status) ?></td>
@@ -39,7 +40,6 @@
                 <td><?= h($user->birthday) ?></td>
                 <td><?= h($user->country) ?></td>
                 <td><?= h($user->password) ?></td>
-                <td><?= $this->Number->format($user->role) ?></td>
                 <td><?= h($user->created) ?></td>
                 <td><?= h($user->modified) ?></td>
                 <td class="actions">
